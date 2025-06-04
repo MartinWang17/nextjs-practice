@@ -7,7 +7,8 @@ type PostPageProps = {
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-    const post = posts.find(p => p.slug === params.slug);
+    const resolvedParams = await params;
+    const post = posts.find(p => p.slug === resolvedParams.slug);
 
     if (!post) {
         return <main><h1>404 - Post Not Found</h1></main>;
