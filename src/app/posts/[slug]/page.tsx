@@ -1,12 +1,10 @@
+import { getPosts } from '../../postsData';
+
+const posts = getPosts();
+
 type PostPageProps = {
     params: { slug: string }
 }
-
-const posts = [
-    { slug: "first-post", title: "My first post", content: "This is my first post content!" },
-    { slug: "Learning-nextjs", title: "Learning Next.js", content: "Learning Next js. This shit confusing" }
-];
-
 
 export default async function PostPage({ params }: PostPageProps) {
     const post = posts.find(p => p.slug === params.slug);
