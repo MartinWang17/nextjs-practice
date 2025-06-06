@@ -15,8 +15,8 @@ export default async function PostPage({ params }: PostPageProps) {
     }
 
     return (
-        <main>
-            <h1>Blog post: {post.title}</h1>
+        <main className="container py-5">
+            <h1 className="display-4 text-primary mb-4 text-center">Blog post: {post.title}</h1>
             <p>{post.content}</p>
         </main>
     )
