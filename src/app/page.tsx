@@ -1,8 +1,21 @@
+'use client';
+import { useEffect, useState } from 'react'
 import { getPosts } from './postsData'
 
-const posts = getPosts();
+type Post = {
+  slug: string;
+  title: string;
+}
 
-export default function HomePage() {
+export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/posts')
+      .then(res => res.json())
+      .then(data => setPosts(data));
+  }, []);
+
   return (
     <main className="d-flex justify-content-center align-items-center min-vh-100">
       <div className="container text-center">
@@ -11,7 +24,7 @@ export default function HomePage() {
               {posts.map(post => (
                 <li key={post.slug} className="list-group-item">
                   <a href={`/posts/${post.slug}`} className="fw-bold text-decoration-none text-dark">
-                    {post.title}
+                    {post.slug}
                   </a>
                 </li>
               ))}
